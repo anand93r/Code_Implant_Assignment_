@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Assignment';
+  posts:any;
+
+  constructor(public api:ApiService){}
+  ngOnInit(){
+    this.api.jsonApi()
+    .subscribe(response =>{
+      this.posts=response;
+    })
+  }
 }
